@@ -1,4 +1,4 @@
-FROM multipl/docker-proxify
+FROM multipl/docker-proxify:latest
 
 # install node + npm + yarn (+ curl)
 RUN apt-get install -y gnupg curl \
@@ -6,3 +6,4 @@ RUN apt-get install -y gnupg curl \
  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update -y && apt-get -y install nodejs npm yarn
 
+RUN apt-get install vim -y
