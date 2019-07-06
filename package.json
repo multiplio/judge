@@ -6,5 +6,9 @@
   "repository": "git@github.com:multiplio/judge.git",
   "author": "Martin Toman <whomenope@outlook.com>",
   "license": "GNU GPLv3",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "node-docker-api": "^1.1.22",
+    "request": "^2.88.0"
+  }
 }
