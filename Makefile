@@ -7,5 +7,5 @@ image:
 shell:
 	docker run --rm -it --privileged ${org}/${name}:latest /bin/bash
 
-test-run:
-	docker run --rm -it --privileged ${org}/${name}:latest
+run:
+	./RUN.sh busybox
