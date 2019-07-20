@@ -7,3 +7,9 @@ RUN apt-get install -y gnupg curl \
 RUN apt-get update -y && apt-get -y install nodejs npm yarn
 
 RUN apt-get install vim -y
+
+# copy setup and set as entrypoint
+COPY ./setup /judge/setup
+ENTRYPOINT ["/judge/setup/setup.sh"]
+
+WORKDIR /app
