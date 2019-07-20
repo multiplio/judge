@@ -1,9 +1,11 @@
 #!/bin/sh
 
+set -ex
+
 # check if has required arguments
-if [ -z "$1" ]; then
+if [ $# -ne 2 ]; then
   echo "Usage: "
-  echo " $ judge [image]"
+  echo " $ judge [image] [script]"
   exit 0
 fi
 
@@ -39,18 +41,29 @@ REGISTRY_ID=$(
 echo "Registry running at port: $PORT"
 echo "Registry container id:    $REGISTRY_ID"
 
+REGISTRY_ADDRESS=$(
+  docker inspect \
+    -f "{{ .NetworkSettings.IPAddress }}" \
+    $REGISTRY_ID
+)
+
 # copy image to registry
 docker tag \
   $1 \
   localhost:$REGISTRY_PORT/$IMAGE
 
+docker push \
+  localhost:$REGISTRY_PORT/$IMAGE
+
 # start judge
 echo "Starting up judge"
-docker run --rm --privileged \
+docker run --privileged \
+  -it \
   --name judge \
+  --env "REGISTRY_ADDRESS=$REGISTRY_ADDRESS" \
   multipl/judge:latest
 
-# kill registry
-docker container kill $REGISTRY_ID
-docker container remove $REGISTRY_ID
-echo "Registry shutdown"
+# # kill registry
+# docker container kill $REGISTRY_ID
+# docker container remove $REGISTRY_ID
+# echo "Registry shutdown"

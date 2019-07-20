@@ -10,6 +10,6 @@ RUN apt-get install vim -y
 
 # copy setup and set as entrypoint
 COPY ./setup /judge/setup
-ENTRYPOINT ["/judge/setup/setup.sh"]
+# ENTRYPOINT ["/proxy/entrypoint", "/judge/setup/setup.sh"]
 
 WORKDIR /app
