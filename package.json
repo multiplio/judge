@@ -7,8 +7,14 @@
   "author": "Martin Toman <whomenope@outlook.com>",
   "license": "GPL-3.0-or-later",
   "private": false,
+  "scripts": {
+    "lint": "eslint ."
+  },
   "dependencies": {
     "node-docker-api": "^1.1.22",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0"
   }
 }
