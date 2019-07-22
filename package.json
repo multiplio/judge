@@ -1,7 +1,7 @@
 {
   "name": "judge",
   "version": "0.1.0",
-  "description": "docker API testing framework",
+  "description": "Docker image API testing framework",
   "main": "index.js",
   "repository": "git@github.com:multiplio/judge.git",
   "author": "Martin Toman <whomenope@outlook.com>",

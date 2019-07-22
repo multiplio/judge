@@ -61,6 +61,8 @@ docker run --privileged \
   -it \
   --name judge \
   --env "REGISTRY_ADDRESS=$REGISTRY_ADDRESS" \
+  --env "TEST_IMAGE=$IMAGE" \
+  -v "$2:/app/test.js"
   multipl/judge:latest
 
 # # kill registry
