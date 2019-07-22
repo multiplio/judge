@@ -7,14 +7,15 @@ RUN apt-get install -y gnupg curl \
   | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update -y && apt-get -y install nodejs npm yarn vim
 
-# copy framework
+# copy + install framework
 WORKDIR /judge
 COPY yarn.lock package.json /judge/
 RUN yarn install --production --frozen-lockfile
-COPY ./ /judge/
+COPY . /judge/
 
 # copy setup and set as entrypoint
-COPY ./setup /judge/setup
-# ENTRYPOINT ["/proxy/entrypoint", "/judge/setup/setup.sh"]
+COPY ./setup/ /judge/setup/
+ENTRYPOINT ["/bin/bash", "-c", "\"/proxy/entrypoint && /judge/setup/setup.sh\""]
+CMD ["bash"]
 
 WORKDIR /app
