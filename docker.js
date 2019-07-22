@@ -8,7 +8,7 @@ let logstream = null
 
 function create(image) {
   return docker.container.create({
-    Image: image,
+    Image: `localhost:5000/${image}`,
     Env: [
       "PROGRAM_ALIAS=mailgun_integration_test",
       "PORT=3000",
